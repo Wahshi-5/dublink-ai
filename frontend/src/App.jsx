@@ -16,13 +16,37 @@ export default function App() {
     }
   };
 
-  const handleDub = () => {
-    if (!fileName || !language) {
-      setStatus("Please select video and language first");
-      return;
+  const handleDub = async () => {
+  if (!fileName || !language) {
+    setStatus("Please select video and language first");
+    return;
+  }
+
+  try {
+    setStatus("Processing your video...");
+
+    const response = await fetch("https://dublink-ai.onrender.com/api/dub", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        language: language,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.message) {
+      setStatus(data.message);
+    } else {
+      setStatus("Dub completed successfully");
     }
-    setStatus("DubLink AI is processing your video...");
-  };
+
+  } catch (error) {
+    setStatus("Error connecting to server");
+  }
+};
 
   const bgStyle = {
     minHeight: "100vh",
