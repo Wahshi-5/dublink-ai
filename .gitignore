@@ -1,6 +1,17 @@
-node_modules
-uploads
-output
+# env files (VERY IMPORTANT)
 .env
-*.mp4
-*.exe
+
+# dependencies
+node_modules/
+
+# uploads & output files
+uploads/
+output/
+
+# logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# OS files
+.DS_Store
