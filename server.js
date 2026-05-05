@@ -3,7 +3,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 
-dotenv.config(); // 🔥 MUST be first after imports
+dotenv.config(); // ✔ only once
+
+const connectDB = require("./config/db");
+connectDB();
 
 const videoRoutes = require("./routes/videoRoutes");
 const transcribeRoutes = require("./routes/transcribeRoutes");
